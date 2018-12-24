@@ -16,8 +16,8 @@ CREATE TABLE IF NOT EXISTS `section` (
     PRIMARY KEY (`id`),
   ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
-DROP TABLE IF EXISTS `users`;
-CREATE TABLE IF NOT EXISTS `users` (
+DROP TABLE IF EXISTS `sportsman`;
+CREATE TABLE IF NOT EXISTS `sportsman` (
   `sportsman_id` int(11) NOT NULL AUTO_INCREMENT,
   `s_section_id` int(10) unsigned NOT NULL,
   `surname` varchar(100) DEFAULT '',
