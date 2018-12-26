@@ -33,9 +33,63 @@ class ZaprosModel extends Model
             return $row[0];
         }
         return false;
+        }
+        
+    public function addSection(string $section_ID, $section_name, $membership, $place_employment, $reception_features, $trainer, $payment)
+    {
+        $row = $this->db->query('INSERT INTO section (int section_ID, varchar section_name, varchar membership,  varchar place_employment, varchar reception_features, varchar trainer, varchar payment) VALUES (?, ?)', 
+        [$section_ID, $section_name, $membership, $place_employment, $reception_features, $trainer, $payment]);
+        if (!$row) {
+            echo json_encode($this->db->getError());
+            return $row;
+        }
+               if ($row)
+            return $id;
+        else
+            return -1;
+    }
+     public function addSportsman(int  $sportsman_ID, int $s_section_ID, varchar $surname, int  $age, varchar $address,  varchar $phone, varchar $growth, varchar $weight,  varchar $achievement)
+    {
+        $row = $this->db->query('INSERT INTO Sportsman (sportsman_ID, s_section_ID, surname, age, address, phone, growth, weight, achievement) VALUES (?, ?)', 
+        [$sportsman_ID, $s_section_ID, $surname, $age, $address, $phone, $growth, $weight, $achievement]);
+        if (!$row) {
+            echo json_encode($this->db->getError());
+            return $row;
+        }
+               if ($row)
+            return $id;
+        else
+            return -1;
+    }
+     public function addCompetition(int $сompetition_ID, varchar $date_competition,  varchar $number_participants, varchar $rank)
+    {
+        $row = $this->db->query('INSERT INTO Competition (сompetition_ID, date_competition, number_participants, rank) VALUES (?, ?)', 
+        [$сompetition_ID, $date_competition, $number_participants, $rank]);
+        if (!$row) {
+            echo json_encode($this->db->getError());
+            return $row;
+        }
+               if ($row)
+            return $id;
+        else
+            return -1;
+    }
     
+     public function addParticipation(int $p_sportsman_ID, int  $p_сompetition_ID, varchar result, varchar place)
+    {
+        $row = $this->db->query('INSERT INTO Participation (date_competition, number_participants, rank) VALUES (?, ?)', 
+        [$date_competition, $number_participants, $rank]);
+        if (!$row) {
+            echo json_encode($this->db->getError());
+            return $row;
+        }
+               if ($row)
+            return $id;
+        else
+            return -1;
+    }
+   
   }
  
   
-  
-}
+  ?>
