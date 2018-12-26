@@ -1,0 +1,41 @@
+<?php
+class ZaprosModel extends Model
+{
+  public function getZaprosBYId(int $id)
+  {
+     $row = $this->db->query('
+        SELECT c.rank, p.result, s.surname, se.section_name, s.s_section_ID
+        FROM Participation p JOIN Competition c
+        ON p.p_сompetition_ID = c.сompetition_ID
+        JOIN Sportsman s
+        ON p.p_sportsman_ID = s.sportsman_ID
+        JOIN Section se
+        ON s.s_section_ID = se.section_ID
+        WHERE se.section_name = 'Тяжелая атлетика'  AND c.rank = 'Городские'  AND s.s_section_ID = '5', [$id]);
+        if (!empty($row)) {
+            return $row[0];
+        }
+        return false;
+  }
+  public function getRankZapros()
+  {
+    $row = $this->db->query('
+     SELECT   s.sportsman_ID AS [Спортсмен], AVG(s.age) AS [Возраст]
+      FROM Participation p JOIN Competition c
+      ON p.p_сompetition_ID = c.сompetition_ID
+      JOIN Sportsman s
+      ON p.p_sportsman_ID = s.sportsman_ID
+      JOIN Section se
+      ON s.s_section_ID = se.section_ID
+      WHERE se.section_name = 'Тяжелая атлетика' 
+      GROUP BY s.sportsman_ID
+       if (!empty($row)) {
+            return $row[0];
+        }
+        return false;
+    
+  }
+ 
+  
+  
+}
